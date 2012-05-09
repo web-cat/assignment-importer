@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<import-targets xmlns="http://web-cat.cs.vt.edu/">
+	<project name="CS2114-Support" hidden="true"
+		uri="file:///Users/bellen08/Desktop/CS2114-Support.zip" depends="" id="s01">
+	</project>
+	<project-group name="Labs" hidden="false">
+		<project name="Lab04-Flashlight" hidden="false" uri="http://web-cat.cs.vt.edu"
+			depends="s1" id="L01">
+		</project>
+		<project name="Demo-RubberLines" hidden="false" uri="file:///Users/bellen08/Desktop/Demo-RubberLines.zip"
+			depends="s01" id="L02">
+		</project>
+	</project-group>
+	<project-group name="Projects" hidden="false">
+		<project name="Project01-Minesweeper" hidden="false"
+			uri="http://web-cat.cs.vt.edu" depends="program01 depends" id="program01 id">
+		</project>
+	</project-group>
+	<project-group name="Demos" hidden="false">
+		<project-group name="Android" hidden="false">
+			<project name="Demo Dots" hidden="false" uri="http://web-cat.cs.vt.edu"
+				depends="demo dots depends" id="da01">
+			</project>
+			<project name="Push Counter" hidden="false"
+				uri="http://web-cat.cs.vt.edu" depends="push counter depends" id="da02">
+			</project>
+		</project-group>
+		<project name="Linked List" hidden="false" uri="http://web-cat.cs.vt.edu"
+			depends="linked list depends" id="d02">
+		</project>
+	</project-group>
+</import-targets>

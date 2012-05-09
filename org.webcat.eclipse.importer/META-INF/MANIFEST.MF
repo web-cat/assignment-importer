@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Web-CAT Project Importer
+Bundle-SymbolicName: org.webcat.eclipse.importer;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.webcat.eclipse.importer.ui.ImporterUIPlugin
+Bundle-Vendor: Virginia Tech Computer Science
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.jdt.core

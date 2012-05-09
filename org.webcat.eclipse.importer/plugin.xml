@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="org.webcat.eclipse.importer.ImporterActionSet"
+            label="Electronic Import"
+            visible="true">
+         <action
+               class="org.webcat.eclipse.importer.ui.actions.ProjectImportAction"
+               icon="icons/application-import.png"
+               style = "push"
+               id="org.webcat.eclipse.importer.ui.actions.ProjectImportAction"
+               label="&amp;Import Project"
+               menubarPath="project/additions"
+               toolbarPath="importGroup"
+               tooltip="Import Project">
+         </action>
+      </actionSet>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.webcat.eclipse.importer.internal.ImporterPreferencePage"
+            id="org.webcat.eclipse.submitter.preferences.import"
+            name="Project Import">
+      </page>
+   </extension>
+
+</plugin>

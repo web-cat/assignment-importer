@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+        targetNamespace="http://www.example.org/import-targets" 
+        xmlns:st="http://www.example.org/import-targets" 
+        elementFormDefault="qualified">
+
+
+    <!--===========================================================            
+    <import targets>
+    ===
+    The root element. 
+    -->        
+    <element name = "import-targets">
+        <complexType>
+            <group ref= "st:projectContainer"/>
+        </complexType>
+    </element>
+    
+    <!-- ==========================================================
+    <project-group>
+    ===
+    A <project-group> can contain other project groups and projects.
+    The user interface displays these as a container in hierarchical  
+    structure.
+    
+    A project group has the following attributes:
+    name (optional)
+    hidden
+     -->
+     <element name="project-group">
+        <complexType>
+            <group ref="st:projectContainer"/>
+            <attribute name = "name" use = "optional"/>
+            <attribute name = "hidden" use = "optional" default = "false"/>
+         </complexType>
+     </element>
+     
+     
+    <!-- ==========================================================
+    <project>
+    ===
+    Refers to a single project or assignment. A <project> is an actual
+    import target-a leaf element the user can select in the interface
+    and precede to import into his/her workspace.
+     -->
+    <element name="project">
+        <complexType>
+            <sequence>
+                <choice minOccurs = "0" maxOccurs = "unbounded">
+                    <element ref = "st:include" minOccurs = "0"/>
+                    <element ref = "st:exclude" minOccurs = "0"/>
+                    <element ref = "st:required" minOccurs = "0"/>
+                </choice>
+                <element ref = "st:transport" minOccurs = "0" maxOccurs = "1"/>
+            </sequence>
+            <attribute name = "name" use = "required"/>
+            <attribute name = "hidden" use = "optional" default = "true"/>
+            <attribute name = "uri" use = "required" type = "anyURI"/>
+            <attribute name = "dependencies" use = "required" type ="string"/>
+        </complexType>
+    </element>
+    
+    <!-- ============================================================
+    <include>, <exclude>, <required>
+    ===
+    Specify file patterns for particular types of files. They all share a 
+    common attribute group- a single required "pattern" attribute of type
+    "string"
+     -->
+    <element name = "include">
+        <complexType>
+            <attributeGroup ref = "st:fileElement"/>
+        </complexType>
+    </element>
+    <element name = "exclude">
+        <complexType>
+            <attributeGroup ref = "st:fileElement"/>
+        </complexType>
+    </element>
+    <element name = "required">
+        <complexType>
+            <attributeGroup ref = "st:fileElement"/>
+        </complexType>
+    </element>
+    
+    
+    <!-- ==========================================================
+    <transport>
+    ===
+    Contains a required "uri" attribute which identifies the 
+    URI from which the archive is down loaded. 
+    
+     -->
+     <element name = "transport">
+        <complexType>
+            <sequence>
+                <choice minOccurs = "0" maxOccurs = "unbounded">
+                    <element ref = "st:param" />
+                    <element ref = "st:file-param"/>
+                </choice>
+            </sequence>
+            <attribute name = "uri" type = "anyURI"/>
+        </complexType>
+     </element>
+     <element name = "param">
+        <complexType>
+            <attributeGroup ref = "st:paramElement"/>
+        </complexType>
+     </element>
+     <element name = "file-param">
+        <complexType>
+            <attributeGroup ref = "st:paramElement"/>
+        </complexType>
+     </element>
+     <attributeGroup name = "paramElement">
+        <attribute name = "name" type = "string" use = "required"/>
+        <attribute name = "value" type = "string" use = "required"/>
+     </attributeGroup>
+     
+     
+    <!-- ==========================================================
+      Attribute Group: fileElement
+      Used by: <include>,<exclude>,<required>
+      
+      attribute: "pattern" specifying the file pattern used to match a file
+      or files in submission.
+     -->
+     <attributeGroup name = "fileElement">
+        <attribute name = "pattern" type = "string" use = "required"/>
+     </attributeGroup>
+    
+    <!-- ===========================================================
+    Group:projectContainer
+    Used by: <importer-targets>, <project-group>
+    ====
+    Contains all elements needed to define a project group.
+     -->
+    <group name="projectContainer">
+        <sequence>
+            <choice minOccurs = "0" maxOccurs = "unbounded">
+                <element ref="st:project"/>
+                <element ref="st:project-group"/>
+            </choice>
+        </sequence>
+    </group>
+</schema>
